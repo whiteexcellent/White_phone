@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Phone OS</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/apps.css">
+
+    <!-- Icons (FontAwesome or similar) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="phone-wrapper">
+        <!-- Wallpaper Layer -->
+        <div class="wallpaper" id="wallpaper"></div>
+
+        <!-- Status Bar (Dynamic Island) -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span id="clock-time">14:02</span>
+            </div>
+            <div class="status-bar-notch"></div>
+            <div class="status-right">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters"></i>
+            </div>
+        </div>
+
+        <!-- Lock Screen -->
+        <div id="lock-screen" class="z-300 absolute inset-0 text-white flex flex-col items-center justify-start pt-20 transition-transform duration-500">
+            <div class="text-xs font-semibold uppercase opacity-80 mb-2" id="date-display">TUESDAY, JUNE 6</div>
+            <div class="text-8xl font-bold tracking-tight" id="lock-clock">14:02</div>
+            
+            <div class="absolute bottom-12 w-full px-8 flex justify-between items-center">
+                <button class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+                    <i class="fas fa-flashlight text-xl"></i>
+                </button>
+                <button class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center" onclick="Phone.openCamera()">
+                    <i class="fas fa-camera text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="absolute bottom-4 w-full flex justify-center opacity-60 text-xs">
+                Swipe up to unlock
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="home-screen" class="absolute inset-0 pt-14 pb-8 px-4 flex flex-col hidden opacity-0 transition-opacity duration-300">
+            <!-- Widget Area -->
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="w-full h-32 bg-white/10 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between">
+                    <div class="text-xs uppercase text-white/60">Weather</div>
+                    <div class="flex items-center gap-2">
+                         <i class="fas fa-sun text-yellow-400 text-2xl"></i>
+                         <span class="text-2xl font-bold">72°</span>
+                    </div>
+                </div>
+                <div class="w-full h-32 bg-white/10 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between">
+                    <div class="text-xs uppercase text-white/60">Calendar</div>
+                    <div>
+                        <div class="text-2xl font-bold text-red-500">TUE</div>
+                        <div class="text-xl font-semibold">6</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Grid -->
+            <div class="grid grid-cols-4 gap-4" id="app-grid">
+                <!-- Apps injected by JS -->
+            </div>
+            
+            <!-- Dock -->
+            <div id="dock">
+                <!-- Dock apps injected by JS -->
+            </div>
+        </div>
+
+        <!-- App Container (Dynamic Injection) -->
+        <div id="app-container"></div>
+
+        <!-- Home Indicator -->
+        <div class="home-indicator"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/nui.js"></script>
+    <script src="js/apps.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

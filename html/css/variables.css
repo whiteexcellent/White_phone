@@ -1,0 +1,91 @@
+:root {
+   /* =========================================
+       COLOR PALETTE (Dark Mode Native)
+       ========================================= */
+   --bg-body: #000000;
+   --bg-card: #1C1C1E;
+   --bg-card-secondary: #2C2C2E;
+   --bg-glass: rgba(28, 28, 30, 0.85);
+   --bg-glass-light: rgba(255, 255, 255, 0.1);
+
+   --text-primary: #FFFFFF;
+   --text-secondary: #8E8E93;
+   --text-tertiary: #48484A;
+   --text-inverse: #000000;
+
+   /* System Accents */
+   --accent-primary: #007AFF;
+   /* iOS Blue */
+   --accent-success: #32D74B;
+   /* Success Green */
+   --accent-danger: #FF453A;
+   /* Error Red */
+   --accent-warning: #FF9F0A;
+   /* Warning Orange */
+   --accent-purple: #BF5AF2;
+   --accent-pink: #FF375F;
+
+   /* Social Brand Colors */
+   --brand-twitter: #1DA1F2;
+   --brand-whatsapp: #25D366;
+   --brand-fansonly: #00AFF0;
+
+   /* Borders & Separators */
+   --border-subtle: rgba(255, 255, 255, 0.1);
+   --border-light: rgba(255, 255, 255, 0.05);
+
+   /* =========================================
+       TYPOGRAPHY
+       ========================================= */
+   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+   --text-xs: 11px;
+   --text-sm: 13px;
+   --text-base: 17px;
+   --text-lg: 20px;
+   --text-xl: 22px;
+   --text-2xl: 28px;
+   --text-3xl: 34px;
+   --text-display: 80px;
+
+   /* =========================================
+       SPACING & LAYOUT
+       ========================================= */
+   --phone-width: 390px;
+   --phone-height: 844px;
+
+   --safe-area-top: 47px;
+   /* Dynamic Island area */
+   --safe-area-bottom: 34px;
+   /* Home indicator area */
+
+   --spacing-xs: 4px;
+   --spacing-sm: 8px;
+   --spacing-md: 16px;
+   --spacing-lg: 24px;
+   --spacing-xl: 32px;
+
+   --radius-sm: 8px;
+   --radius-md: 12px;
+   --radius-lg: 18px;
+   --radius-xl: 24px;
+   --radius-full: 9999px;
+
+   /* =========================================
+       SHADOWS & DEPTH
+       ========================================= */
+   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+   /* =========================================
+       Z-INDEX LAYERS
+       ========================================= */
+   --z-background: 0;
+   --z-app: 10;
+   --z-dock: 20;
+   --z-modal: 50;
+   --z-notification: 100;
+   --z-status-bar: 200;
+   --z-lock-screen: 300;
+}

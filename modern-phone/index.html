@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Ultra-realistic iOS 18 Phone UI with cutting-edge web technologies">
+
+    <title>White Phone OS</title>
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts - Inter for premium typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=SF+Pro+Display:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Architecture - Layer-based cascade control -->
+    <link rel="stylesheet" href="./styles/design-system.css">
+    <link rel="stylesheet" href="./styles/animations.css">
+    <link rel="stylesheet" href="./styles/phone.css">
+    <link rel="stylesheet" href="./styles/apps.css">
+    <link rel="stylesheet" href="./styles/individual-apps.css">
+
+    <!-- View Transitions API Support Detection -->
+    <style>
+        @supports not (view-transition-name: none) {
+
+            /* Fallback for browsers without View Transitions API */
+            .view-transition-fallback {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Application Container -->
+    <div id="app" class="main-layout-wrapper">
+        <!-- Phone will be dynamically rendered here -->
+        <div id="phone-root" class="phone-root"></div>
+
+        <!-- Loading State -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+            </div>
+            <p class="loading-text">Loading White Phone OS...</p>
+        </div>
+    </div>
+
+    <!-- ES6 Modules - Modern JavaScript Architecture -->
+    <script type="module">
+        // Feature Detection
+        const supportsViewTransitions = 'startViewTransition' in document;
+        const supportsContainerQueries = CSS.supports('container-type: inline-size');
+        const supportsHas = CSS.supports('selector(:has(*))');
+
+        console.log('🚀 White Phone OS - Feature Support:');
+        console.log('  ✓ View Transitions:', supportsViewTransitions);
+        console.log('  ✓ Container Queries:', supportsContainerQueries);
+        console.log('  ✓ :has() Selector:', supportsHas);
+
+        // Store feature flags globally
+        window.PHONE_FEATURES = {
+            viewTransitions: supportsViewTransitions,
+            containerQueries: supportsContainerQueries,
+            hasSelector: supportsHas
+        };
+    </script>
+
+    <!-- Main Application Entry Point -->
+    <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>

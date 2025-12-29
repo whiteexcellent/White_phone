@@ -1,0 +1,42 @@
+.phone-wrapper {
+    width: 375px;
+    height: 812px;
+    position: relative;
+    border-radius: 55px;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+        0 0 0 4px #1a1a1a,
+        0 0 0 6px #333,
+        0 40px 80px -20px rgba(0, 0, 0, 0.8);
+}
+
+/* Bezel Shine Effects */
+.phone-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 55px;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+/* Home Indicator */
+.home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    z-index: 1000;
+    transition: all 0.2s;
+}
+
+.home-indicator:hover {
+    background: rgba(255, 255, 255, 0.5);
+    height: 6px;
+}

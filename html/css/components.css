@@ -1,0 +1,406 @@
+/* =========================================
+   CARDS & CONTAINERS
+   ========================================= */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.card-header {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.card-body {
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* =========================================
+   LISTS
+   ========================================= */
+.list-group {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background 0.2s;
+    color: white;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item:active {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.list-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 20px;
+}
+
+.list-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.list-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.list-subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.list-arrow {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 18px;
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+.btn {
+    border: none;
+    outline: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn-primary {
+    background: #007AFF;
+    color: white;
+}
+
+.btn-success {
+    background: #32D74B;
+    color: white;
+}
+
+.btn-danger {
+    background: #FF3B30;
+    color: white;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    backdrop-filter: blur(20px);
+}
+
+.btn-large {
+    padding: 18px 32px;
+    font-size: 18px;
+    border-radius: 14px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* =========================================
+   INPUTS
+   ========================================= */
+.input-group {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.input-group i {
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.input-field {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================
+   TOGGLES & SWITCHES
+   ========================================= */
+.toggle-switch {
+    position: relative;
+    width: 51px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.toggle-switch.active {
+    background: #32D74B;
+}
+
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 27px;
+    height: 27px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch.active::after {
+    transform: translateX(20px);
+}
+
+/* =========================================
+   BADGES & TAGS
+   ========================================= */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-primary {
+    background: #007AFF;
+    color: white;
+}
+
+.badge-success {
+    background: #32D74B;
+    color: white;
+}
+
+.badge-danger {
+    background: #FF3B30;
+    color: white;
+}
+
+.badge-warning {
+    background: #FF9F0A;
+    color: white;
+}
+
+/* =========================================
+   MODALS
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal {
+    background: rgba(28, 28, 30, 0.95);
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+    padding: 24px;
+    max-width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal-header {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.modal-body {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* =========================================
+   NOTIFICATIONS (Lock Screen)
+   ========================================= */
+.notification-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(30px);
+    border-radius: 16px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    color: white;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.notification-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.notification-app {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.notification-time {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-left: auto;
+}
+
+.notification-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.notification-body {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* =========================================
+   AVATARS
+   ========================================= */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.avatar-small {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+}
+
+.avatar-large {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+}
+
+/* =========================================
+   DIVIDERS
+   ========================================= */
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.divider-text {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 20px 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+}
+
+.divider-text::before,
+.divider-text::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,577 @@
+/**
+ * White Phone OS - Design System
+ * Modern CSS Architecture with @layer cascade control
+ */
+
+/* ============================================
+   LAYER DEFINITIONS
+   Controls CSS cascade priority
+   ============================================ */
+@layer reset, tokens, components, utilities;
+
+/* ============================================
+   RESET LAYER - Modern CSS Reset
+   ============================================ */
+@layer reset {
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body,
+    #app {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Helvetica Neue', sans-serif;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: white;
+        overscroll-behavior: none;
+        touch-action: pan-x pan-y;
+    }
+
+    button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    input,
+    textarea {
+        font-family: inherit;
+        border: none;
+        outline: none;
+    }
+
+    img,
+    svg {
+        display: block;
+        max-width: 100%;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+/* ============================================
+   TOKENS LAYER - Design Tokens
+   CSS Custom Properties (Variables)
+   ============================================ */
+@layer tokens {
+    :root {
+        /* ===== iOS Color Palette ===== */
+        --ios-blue: #007AFF;
+        --ios-green: #34C759;
+        --ios-red: #FF3B30;
+        --ios-orange: #FF9500;
+        --ios-yellow: #FFCC00;
+        --ios-purple: #AF52DE;
+        --ios-pink: #FF2D55;
+        --ios-teal: #5AC8FA;
+        --ios-indigo: #5856D6;
+
+        /* Gray Scale */
+        --ios-gray-1: #8E8E93;
+        --ios-gray-2: #AEAEB2;
+        --ios-gray-3: #C7C7CC;
+        --ios-gray-4: #D1D1D6;
+        --ios-gray-5: #E5E5EA;
+        --ios-gray-6: #F2F2F7;
+
+        /* Dark Mode Colors */
+        --ios-bg-primary: #000000;
+        --ios-bg-secondary: #1C1C1E;
+        --ios-bg-tertiary: #2C2C2E;
+        --ios-bg-elevated: #3A3A3C;
+
+        /* ===== Glass Effects ===== */
+        --glass-bg: rgba(28, 28, 30, 0.7);
+        --glass-bg-light: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.12);
+        --glass-blur: 20px;
+        --glass-blur-strong: 30px;
+
+        /* ===== Spacing System ===== */
+        --space-0_5: 0.125rem;
+        /* 2px */
+        --space-1: 0.25rem;
+        /* 4px */
+        --space-2: 0.5rem;
+        /* 8px */
+        --space-3: 0.75rem;
+        /* 12px */
+        --space-4: 1rem;
+        /* 16px */
+        --space-5: 1.25rem;
+        /* 20px */
+        --space-6: 1.5rem;
+        /* 24px */
+        --space-8: 2rem;
+        /* 32px */
+        --space-10: 2.5rem;
+        /* 40px */
+        --space-12: 3rem;
+        /* 48px */
+        --space-16: 4rem;
+        /* 64px */
+
+        /* ===== Typography ===== */
+        --font-size-xs: 0.6875rem;
+        /* 11px */
+        --font-size-sm: 0.8125rem;
+        /* 13px */
+        --font-size-base: 1.0625rem;
+        /* 17px */
+        --font-size-lg: 1.25rem;
+        /* 20px */
+        --font-size-xl: 1.5rem;
+        /* 24px */
+        --font-size-2xl: 1.75rem;
+        /* 28px */
+        --font-size-3xl: 2.125rem;
+        /* 34px */
+
+        --font-weight-light: 300;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 600;
+        --font-weight-bold: 700;
+        --font-weight-black: 900;
+
+        --line-height-tight: 1.2;
+        --line-height-normal: 1.5;
+        --line-height-relaxed: 1.75;
+
+        /* ===== Border Radius ===== */
+        --radius-xs: 0.25rem;
+        /* 4px */
+        --radius-sm: 0.5rem;
+        /* 8px */
+        --radius-md: 0.75rem;
+        /* 12px */
+        --radius-lg: 1rem;
+        /* 16px */
+        --radius-xl: 1.5rem;
+        /* 24px */
+        --radius-2xl: 2rem;
+        /* 32px */
+        --radius-3xl: 3.4375rem;
+        /* 55px - Phone screen */
+        --radius-full: 9999px;
+
+        /* ===== Phone Dimensions ===== */
+        --phone-width: 375px;
+        --phone-height: 812px;
+        --phone-radius: 55px;
+        --phone-bezel: 6px;
+
+        /* ===== Dynamic Island ===== */
+        --island-height-compact: 37px;
+        --island-width-compact: 126px;
+        --island-height-expanded: 84px;
+        --island-width-expanded: 371px;
+
+        /* ===== Z-Index Scale ===== */
+        --z-base: 0;
+        --z-content: 10;
+        --z-overlay: 50;
+        --z-dynamic-island: 100;
+        --z-control-center: 200;
+        --z-notification: 300;
+        --z-modal: 400;
+        --z-max: 1000;
+
+        /* ===== Transitions ===== */
+        --duration-fast: 150ms;
+        --duration-normal: 300ms;
+        --duration-slow: 500ms;
+
+        --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+        /* ===== Shadows ===== */
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+        --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.25);
+        --shadow-phone: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* ============================================
+   COMPONENTS LAYER - Reusable Components
+   ============================================ */
+@layer components {
+
+    /* ===== App Container ===== */
+    .app-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 2000px;
+    }
+
+    .phone-root {
+        position: relative;
+    }
+
+    /* ===== Loading Screen ===== */
+    .loading-screen {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        z-index: var(--z-max);
+        opacity: 1;
+        transition: opacity var(--duration-slow) var(--ease-smooth);
+    }
+
+    .loading-screen.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        position: relative;
+    }
+
+    .spinner-ring {
+        width: 100%;
+        height: 100%;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-top-color: var(--ios-blue);
+        border-radius: var(--radius-full);
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loading-text {
+        margin-top: var(--space-4);
+        font-size: var(--font-size-sm);
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: var(--font-weight-medium);
+    }
+
+    /* ===== Glassmorphism Variants ===== */
+    .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 0.5px solid var(--glass-border);
+        box-shadow: var(--shadow-md);
+    }
+
+    .glass-light {
+        background: var(--glass-bg-light);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .glass-strong {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(var(--glass-blur-strong));
+        -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+        color: var(--ios-bg-primary);
+    }
+
+    .glass-vibrant {
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 100%);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 0.5px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* ===== Pressable Interactions ===== */
+    .pressable {
+        transition: transform var(--duration-fast) var(--ease-smooth),
+            opacity var(--duration-fast) var(--ease-smooth);
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .pressable:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+
+    .pressable-shrink {
+        transition: transform var(--duration-normal) var(--ease-spring);
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .pressable-shrink:active {
+        transform: scale(0.90);
+    }
+
+    /* ===== Scrollbar Styles ===== */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .ios-scrollbar::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+    }
+
+    .ios-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .ios-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: var(--radius-full);
+    }
+
+    .ios-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* ============================================
+   UTILITIES LAYER - Utility Classes
+   ============================================ */
+@layer utilities {
+
+    /* ===== Display ===== */
+    .flex {
+        display: flex;
+    }
+
+    .inline-flex {
+        display: inline-flex;
+    }
+
+    .grid {
+        display: grid;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* ===== Flex Direction ===== */
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    /* ===== Justify Content ===== */
+    .justify-start {
+        justify-content: flex-start;
+    }
+
+    .justify-center {
+        justify-content: center;
+    }
+
+    .justify-end {
+        justify-content: flex-end;
+    }
+
+    .justify-between {
+        justify-content: space-between;
+    }
+
+    /* ===== Align Items ===== */
+    .items-start {
+        align-items: flex-start;
+    }
+
+    .items-center {
+        align-items: center;
+    }
+
+    .items-end {
+        align-items: flex-end;
+    }
+
+    /* ===== Position ===== */
+    .relative {
+        position: relative;
+    }
+
+    .absolute {
+        position: absolute;
+    }
+
+    .fixed {
+        position: fixed;
+    }
+
+    /* ===== Inset ===== */
+    .inset-0 {
+        inset: 0;
+    }
+
+    /* ===== Pointer Events ===== */
+    .pointer-events-none {
+        pointer-events: none;
+    }
+
+    .pointer-events-auto {
+        pointer-events: auto;
+    }
+
+    /* ===== Overflow ===== */
+    .overflow-hidden {
+        overflow: hidden;
+    }
+
+    .overflow-auto {
+        overflow: auto;
+    }
+
+    .overflow-scroll {
+        overflow: scroll;
+    }
+
+    /* ===== Text Alignment ===== */
+    .text-left {
+        text-align: left;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    /* ===== Font Weight ===== */
+    .font-light {
+        font-weight: var(--font-weight-light);
+    }
+
+    .font-normal {
+        font-weight: var(--font-weight-regular);
+    }
+
+    .font-medium {
+        font-weight: var(--font-weight-medium);
+    }
+
+    .font-semibold {
+        font-weight: var(--font-weight-semibold);
+    }
+
+    .font-bold {
+        font-weight: var(--font-weight-bold);
+    }
+
+    /* ===== iOS Colors ===== */
+    .text-ios-blue {
+        color: var(--ios-blue);
+    }
+
+    .text-ios-green {
+        color: var(--ios-green);
+    }
+
+    .text-ios-red {
+        color: var(--ios-red);
+    }
+
+    .text-ios-gray {
+        color: var(--ios-gray-1);
+    }
+
+    .bg-ios-blue {
+        background-color: var(--ios-blue);
+    }
+
+    .bg-ios-green {
+        background-color: var(--ios-green);
+    }
+
+    .bg-ios-red {
+        background-color: var(--ios-red);
+    }
+
+    /* ===== Opacity ===== */
+    .opacity-0 {
+        opacity: 0;
+    }
+
+    .opacity-50 {
+        opacity: 0.5;
+    }
+
+    .opacity-100 {
+        opacity: 1;
+    }
+
+    /* ===== Width/Height ===== */
+    .w-full {
+        width: 100%;
+    }
+
+    .h-full {
+        height: 100%;
+    }
+
+    /* ===== Border Radius ===== */
+    .rounded-sm {
+        border-radius: var(--radius-sm);
+    }
+
+    .rounded-md {
+        border-radius: var(--radius-md);
+    }
+
+    .rounded-lg {
+        border-radius: var(--radius-lg);
+    }
+
+    .rounded-xl {
+        border-radius: var(--radius-xl);
+    }
+
+    .rounded-full {
+        border-radius: var(--radius-full);
+    }
+}

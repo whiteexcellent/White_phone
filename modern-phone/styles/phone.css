@@ -1,0 +1,424 @@
+/**
+ * White Phone OS - Phone Component Styles
+ * Ultra-realistic iPhone UI with Container Queries
+ */
+
+/* ============================================
+   APP CONTAINER
+   Main application wrapper
+   ============================================ */
+
+/* ============================================
+   APP CONTAINER
+   Main application wrapper
+   ============================================ */
+
+/* ============================================
+   APP CONTAINER
+   Main application wrapper
+   ============================================ */
+
+.main-layout-wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#phone-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   PHONE WRAPPER
+   Main phone container with 3D effects
+   ============================================ */
+
+.phone-container {
+    /* Container Query Support */
+    container-type: inline-size;
+    container-name: phone;
+
+    width: 375px;
+    /* Fixed fallback width */
+    height: 812px;
+    /* Fixed fallback height */
+    width: var(--phone-width, 375px);
+    height: var(--phone-height, 812px);
+
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Ensure visibility */
+    display: block;
+    opacity: 1;
+    z-index: 10;
+}
+
+/* Phone entrance animation */
+.phone-container.entering {
+    animation: phoneEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes phoneEnter {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.9) rotateX(10deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+    }
+}
+
+/* ============================================
+   PHONE BEZEL & FRAME
+   Realistic device frame
+   ============================================ */
+
+/* ============================================
+   PHONE BEZEL & FRAME
+   Realistic device frame
+   ============================================ */
+
+.phone-bezel {
+    position: absolute;
+    inset: calc(var(--phone-bezel) * -2);
+    border-radius: calc(var(--phone-radius) + 8px);
+
+    /* Realistic Frame Material */
+    border: var(--phone-bezel) solid #1d1d1f;
+    /* Space Black */
+    background: linear-gradient(135deg, #2a2a2a, #111 40%, #000 60%, #1a1a1a);
+
+    /* Inner and Outer Depth */
+    box-shadow:
+        inset 0 0 0 2px #444,
+        /* Inner highlight */
+        0 0 0 2px #000,
+        /* Outer cut */
+        var(--shadow-phone);
+
+    z-index: -1;
+}
+
+/* Bezel highlight effect (Antenna lines & reflections) */
+.phone-bezel::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: linear-gradient(125deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            transparent 25%,
+            transparent 75%,
+            rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ============================================
+   PHONE SCREEN
+   Main display area
+   ============================================ */
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: var(--phone-radius);
+    background: #000;
+    overflow: hidden;
+    z-index: 1;
+
+    /* Screen Glare/Reflection */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Screen glass reflection (Subtle) */
+.phone-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(105deg,
+            rgba(255, 255, 255, 0.15) 0%,
+            transparent 35%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: var(--z-max);
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+    transition: opacity 0.3s ease;
+}
+
+.phone-screen:hover::before {
+    opacity: 0.3;
+}
+
+/* ============================================
+   NOTCH (Backup)
+   ============================================ */
+
+.phone-notch {
+    display: none;
+    /* We use Dynamic Island */
+}
+
+/* ============================================
+   HOME INDICATOR
+   Bottom gesture bar
+   ============================================ */
+
+.home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    z-index: var(--z-max);
+    transition: all 0.2s var(--ease-smooth);
+    cursor: pointer;
+}
+
+.home-indicator:hover {
+    background: rgba(255, 255, 255, 0.5);
+    height: 6px;
+}
+
+.home-indicator:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+/* ============================================
+   WALLPAPER LAYER
+   Dynamic background with parallax
+   ============================================ */
+
+.phone-wallpaper {
+    position: absolute;
+    inset: -10%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+}
+
+/* Locked state - clear wallpaper */
+.phone-wallpaper.locked {
+    transform: scale(1.1);
+    filter: none;
+}
+
+/* Unlocked state - blurred background */
+.phone-wallpaper.unlocked {
+    transform: scale(1.2);
+    filter: blur(40px) brightness(0.6);
+}
+
+/* ============================================
+   CONTAINER QUERIES
+   Responsive components based on phone size
+   ============================================ */
+
+/* Small phone adaptation */
+@container phone (max-width: 350px) {
+    .home-indicator {
+        width: 120px;
+        height: 4px;
+    }
+
+    .phone-bezel {
+        inset: calc(var(--phone-bezel) * -1.5);
+    }
+}
+
+/* Large phone adaptation */
+@container phone (min-width: 400px) {
+    .home-indicator {
+        width: 150px;
+        height: 6px;
+    }
+}
+
+/* ============================================
+   SCREEN LAYERS
+   Z-index organization
+   ============================================ */
+
+.screen-layer-base {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-base);
+}
+
+.screen-layer-content {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-content);
+}
+
+.screen-layer-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-overlay);
+    pointer-events: none;
+}
+
+.screen-layer-overlay>* {
+    pointer-events: auto;
+}
+
+/* ============================================
+   DYNAMIC ISLAND
+   Interactive notification area
+   ============================================ */
+
+.dynamic-island {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: var(--island-height-compact);
+    width: var(--island-width-compact);
+    background: var(--ios-bg-primary);
+    border-radius: 23px;
+    z-index: var(--z-dynamic-island);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Island expanded state */
+.dynamic-island.expanded {
+    height: var(--island-height-expanded);
+    width: var(--island-width-expanded);
+    border-radius: 42px;
+}
+
+/* Island content wrapper */
+.island-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    position: relative;
+}
+
+/* Island compact view - camera/sensor area */
+.island-compact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.island-camera {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1a1a2e 0%, #000 70%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.island-sensor {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0a0a0f;
+}
+
+/* Island expanded view - live activities */
+.island-expanded-content {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+}
+
+.dynamic-island.expanded .island-expanded-content {
+    display: flex;
+    opacity: 1;
+}
+
+.dynamic-island.expanded .island-compact {
+    display: none;
+}
+
+/* ============================================
+   SIDE BUTTONS (Optional visual detail)
+   ============================================ */
+
+.phone-button-power {
+    position: absolute;
+    right: -6px;
+    top: 180px;
+    width: 6px;
+    height: 80px;
+    background: linear-gradient(90deg, #1a1a1a, #0c0c0c);
+    border-radius: 0 3px 3px 0;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.phone-button-volume-up {
+    position: absolute;
+    left: -6px;
+    top: 140px;
+    width: 6px;
+    height: 50px;
+    background: linear-gradient(90deg, #0c0c0c, #1a1a1a);
+    border-radius: 3px 0 0 3px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.phone-button-volume-down {
+    position: absolute;
+    left: -6px;
+    top: 200px;
+    width: 6px;
+    height: 50px;
+    background: linear-gradient(90deg, #0c0c0c, #1a1a1a);
+    border-radius: 3px 0 0 3px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .phone-container,
+    .dynamic-island,
+    .phone-wallpaper {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .phone-bezel {
+        border-color: #ffffff;
+    }
+
+    .home-indicator {
+        background: rgba(255, 255, 255, 0.8);
+    }
+}

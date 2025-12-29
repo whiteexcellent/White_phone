@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Phone OS - Premium Demo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/apps.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="phone-wrapper">
+        <!-- Wallpaper Layer -->
+        <div class="wallpaper" id="wallpaper"></div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span id="clock-time">14:02</span>
+            </div>
+            <div class="status-bar-notch">
+                <div class="notch-camera"></div>
+            </div>
+            <div class="status-right">
+                <i class="fas fa-signal" style="font-size: 12px;"></i>
+                <i class="fas fa-wifi" style="font-size: 12px;"></i>
+                <span id="battery-percent" style="font-size: 12px; margin-left: 4px;">100%</span>
+                <i class="fas fa-battery-full" style="font-size: 14px;"></i>
+            </div>
+        </div>
+
+        <!-- Lock Screen -->
+        <div id="lock-screen" class="lock-screen">
+            <div class="lock-time-container">
+                <div class="lock-date" id="lock-date">Tuesday, December 29</div>
+                <div class="lock-time" id="lock-time">14:02</div>
+            </div>
+
+            <!-- Lock Screen Notifications -->
+            <div class="lock-notifications" id="lock-notifications">
+                <!-- Notifications will be injected here -->
+            </div>
+
+            <!-- Lock Screen Bottom Actions -->
+            <div class="lock-bottom-actions">
+                <button class="lock-action-btn" id="flashlight-btn">
+                    <i class="fas fa-flashlight"></i>
+                </button>
+                <div class="lock-unlock-hint">
+                    <i class="fas fa-chevron-up"></i>
+                    <span>Swipe up to unlock</span>
+                </div>
+                <button class="lock-action-btn" id="camera-btn">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="home-screen" class="home-screen hidden">
+            <!-- Search Bar -->
+            <div class="home-search" id="home-search">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </div>
+
+            <!-- Widgets Area -->
+            <div class="widgets-container" id="widgets-container">
+                <!-- Widget: Weather -->
+                <div class="widget widget-medium">
+                    <div class="widget-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Los Santos</span>
+                    </div>
+                    <div class="widget-weather">
+                        <div class="weather-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="weather-temp">72°</div>
+                        <div class="weather-desc">Sunny</div>
+                    </div>
+                    <div class="widget-weather-details">
+                        <span>H:78° L:65°</span>
+                    </div>
+                </div>
+
+                <!-- Widget: Calendar -->
+                <div class="widget widget-small">
+                    <div class="widget-calendar">
+                        <div class="calendar-month">DEC</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-weekday">TUESDAY</div>
+                    </div>
+                </div>
+
+                <!-- Widget: Battery -->
+                <div class="widget widget-small">
+                    <div class="widget-battery">
+                        <i class="fas fa-battery-full"></i>
+                        <div class="battery-percent">100%</div>
+                        <div class="battery-status">Fully Charged</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Grid Pages -->
+            <div class="app-pages" id="app-pages">
+                <div class="app-page active" data-page="0">
+                    <div class="app-grid" id="app-grid-0">
+                        <!-- Apps will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Dots -->
+            <div class="page-dots" id="page-dots">
+                <span class="dot active"></span>
+            </div>
+
+            <!-- Dock -->
+            <div class="dock" id="dock">
+                <!-- Dock apps will be injected here -->
+            </div>
+        </div>
+
+        <!-- App Container -->
+        <div id="app-container"></div>
+
+        <!-- Control Center (Swipe down from top-right) -->
+        <div id="control-center" class="control-center hidden">
+            <div class="control-header">
+                <span>Control Center</span>
+                <button class="control-close" onclick="Phone.closeControlCenter()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="control-grid">
+                <div class="control-item control-wifi">
+                    <i class="fas fa-wifi"></i>
+                    <span>Wi-Fi</span>
+                </div>
+                <div class="control-item control-bluetooth">
+                    <i class="fas fa-bluetooth"></i>
+                    <span>Bluetooth</span>
+                </div>
+                <div class="control-item control-airplane">
+                    <i class="fas fa-plane"></i>
+                    <span>Airplane</span>
+                </div>
+                <div class="control-item control-dnd">
+                    <i class="fas fa-moon"></i>
+                    <span>Do Not Disturb</span>
+                </div>
+            </div>
+            <div class="control-brightness">
+                <i class="fas fa-sun"></i>
+                <input type="range" min="0" max="100" value="80" class="brightness-slider">
+            </div>
+            <div class="control-volume">
+                <i class="fas fa-volume-up"></i>
+                <input type="range" min="0" max="100" value="60" class="volume-slider">
+            </div>
+        </div>
+
+        <!-- Notification Center (Swipe down from top) -->
+        <div id="notification-center" class="notification-center hidden">
+            <div class="notification-header">
+                <span>Notifications</span>
+                <button class="notification-close" onclick="Phone.closeNotificationCenter()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="notification-list" id="notification-list">
+                <!-- Notifications will be injected here -->
+            </div>
+        </div>
+
+        <!-- Home Indicator -->
+        <div class="home-indicator"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/nui.js"></script>
+    <script src="js/apps.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
